@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sales Invoice</title>
+<link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+<div class="invoice-container">
+    <div class="header">
+        <div>
+            <label>Client: <input type="text" id="client"></label><br>
+            <label>Tel: <input type="text" id="tel"></label><br>
+            <label>Email: <input type="email" id="email"></label><br>
+            <label>Address: <input type="text" id="address"></label>
+        </div>
+        <div>
+            <label>Date: <input type="date" id="date"></label>
+        </div>
+    </div>
+
+    <table id="invoiceTable">
+        <thead>
+            <tr>
+                <th>CANTIDAD</th>
+                <th>DESCRIPCION</th>
+                <th>IMAGEN</th>
+                <th>PRECIO UNITARIO</th>
+                <th>SUBTOTAL</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="number" class="product-qty" min="1" value="1" onchange="calculateSubtotal(this)"></td>
+                <td>
+                    <select onchange="updateProduct(this)">
+                        <option value="" data-price="0" data-photo="" data-description="">Select Product</option>
+                        <option value="MOUSE" data-price="100" data-photo="mouse.jpeg" data-description="Dispositivo de entrada que permite al usuario interactuar con la interfaz gráfica de un ordenador -- DELUX">MOUSE</option>
+                        <option value="TECLADO" data-price="100" data-photo="teclado.jpeg" data-description="Dispositivo de entrada compuesto por teclas que permite al usuario introducir texto -- Razer">TECLADO</option>
+                        <option value="FUENTE DE PODER" data-price="100" data-photo="fuente.jpeg" data-description="Componente que suministra energía eléctrica a todos los otros componentes del ordenador -- EVGA">FUENTE DE PODER</option>
+                        <option value="DISCO SOLIDO" data-price="100" data-photo="hhss.jpeg" data-description=" Dispositivo de almacenamiento que utiliza memoria flash para almacenar datos, ofreciendo tiempos de acceso más rápidos que los discos duros tradicionales -- Samsung (Serie 970 EVO, 860 EVO)">DISCO SOLIDO</option>
+                        <option value="PROCESADOR" data-price="100" data-photo="procesador.jpeg" data-description="Componente central que ejecuta instrucciones y procesa datos en un ordenador. Se le conoce como el cerebro del sistema -- AMD (Ryzen 9, 7, 5)">PROCESADOR</option>
+                        <option value="MEMORIA RAM" data-price="200" data-photo="ram.jpeg" data-description="Tipo de memoria volátil que almacena temporalmente los datos y programas que el procesador está utilizando -- Corsair (Vengeance LPX)">MEMORIA RAM</option>
+                    </select>
+                    <div class="product-description" style="width: 800px;"></div> <!-- Description area -->
+                </td>
+                <td><img class="photo-preview" src="" alt="Photo"></td>
+                <td class="product-price">0.00</td>
+                <td class="product-subtotal">0.00</td>
+            </tr>
+            <tr>
+                <td><input type="number" class="product-qty" min="1" value="1" onchange="calculateSubtotal(this)"></td>
+                <td>
+                    <select onchange="updateProduct(this)">
+                        <option value="" data-price="0" data-photo="" data-description="">Select Product</option>
+                        <option value="MOUSE" data-price="100" data-photo="mouse.jpeg" data-description="Dispositivo de entrada que permite al usuario interactuar con la interfaz gráfica de un ordenador -- DELUX">MOUSE</option>
+                        <option value="TECLADO" data-price="100" data-photo="teclado.jpeg" data-description="Dispositivo de entrada compuesto por teclas que permite al usuario introducir texto -- Razer">TECLADO</option>
+                        <option value="FUENTE DE PODER" data-price="100" data-photo="fuente.jpeg" data-description="Componente que suministra energía eléctrica a todos los otros componentes del ordenador -- EVGA">FUENTE DE PODER</option>
+                        <option value="DISCO SOLIDO" data-price="100" data-photo="hhss.jpeg" data-description=" Dispositivo de almacenamiento que utiliza memoria flash para almacenar datos, ofreciendo tiempos de acceso más rápidos que los discos duros tradicionales -- Samsung (Serie 970 EVO, 860 EVO)">DISCO SOLIDO</option>
+                        <option value="PROCESADOR" data-price="100" data-photo="procesador.jpeg" data-description="Componente central que ejecuta instrucciones y procesa datos en un ordenador. Se le conoce como el cerebro del sistema -- AMD (Ryzen 9, 7, 5)">PROCESADOR</option>
+                        <option value="MEMORIA RAM" data-price="200" data-photo="ram.jpeg" data-description="Tipo de memoria volátil que almacena temporalmente los datos y programas que el procesador está utilizando -- Corsair (Vengeance LPX)">MEMORIA RAM</option>
+                    </select>
+                    <div class="product-description" style="width: 800px;"></div> <!-- Description area -->
+                </td>
+                <td><img class="photo-preview" src="" alt="Photo"></td>
+                <td class="product-price">0.00</td>
+                <td class="product-subtotal">0.00</td>
+            </tr>
+            <tr>
+                <td><input type="number" class="product-qty" min="1" value="1" onchange="calculateSubtotal(this)"></td>
+                <td>
+                    <select onchange="updateProduct(this)">
+                        <option value="" data-price="0" data-photo="" data-description="">Select Product</option>
+                        <option value="MOUSE" data-price="100" data-photo="mouse.jpeg" data-description="Dispositivo de entrada que permite al usuario interactuar con la interfaz gráfica de un ordenador -- DELUX">MOUSE</option>
+                        <option value="TECLADO" data-price="100" data-photo="teclado.jpeg" data-description="Dispositivo de entrada compuesto por teclas que permite al usuario introducir texto -- Razer">TECLADO</option>
+                        <option value="FUENTE DE PODER" data-price="100" data-photo="fuente.jpeg" data-description="Componente que suministra energía eléctrica a todos los otros componentes del ordenador -- EVGA">FUENTE DE PODER</option>
+                        <option value="DISCO SOLIDO" data-price="100" data-photo="hhss.jpeg" data-description=" Dispositivo de almacenamiento que utiliza memoria flash para almacenar datos, ofreciendo tiempos de acceso más rápidos que los discos duros tradicionales -- Samsung (Serie 970 EVO, 860 EVO)">DISCO SOLIDO</option>
+                        <option value="PROCESADOR" data-price="100" data-photo="procesador.jpeg" data-description="Componente central que ejecuta instrucciones y procesa datos en un ordenador. Se le conoce como el cerebro del sistema -- AMD (Ryzen 9, 7, 5)">PROCESADOR</option>
+                        <option value="MEMORIA RAM" data-price="200" data-photo="ram.jpeg" data-description="Tipo de memoria volátil que almacena temporalmente los datos y programas que el procesador está utilizando -- Corsair (Vengeance LPX)">MEMORIA RAM</option>
+                    </select>
+                    <div class="product-description" style="width: 800px;"></div> <!-- Description area -->
+                </td>
+                <td><img class="photo-preview" src="" alt="Photo"></td>
+                <td class="product-price">0.00</td>
+                <td class="product-subtotal">0.00</td>
+            </tr>
+            <tr>
+                <td><input type="number" class="product-qty" min="1" value="1" onchange="calculateSubtotal(this)"></td>
+                <td>
+                    <select onchange="updateProduct(this)">
+                        <option value="" data-price="0" data-photo="" data-description="">Select Product</option>
+                        <option value="MOUSE" data-price="100" data-photo="mouse.jpeg" data-description="Dispositivo de entrada que permite al usuario interactuar con la interfaz gráfica de un ordenador -- DELUX">MOUSE</option>
+                        <option value="TECLADO" data-price="100" data-photo="teclado.jpeg" data-description="Dispositivo de entrada compuesto por teclas que permite al usuario introducir texto -- Razer">TECLADO</option>
+                        <option value="FUENTE DE PODER" data-price="100" data-photo="fuente.jpeg" data-description="Componente que suministra energía eléctrica a todos los otros componentes del ordenador -- EVGA">FUENTE DE PODER</option>
+                        <option value="DISCO SOLIDO" data-price="100" data-photo="hhss.jpeg" data-description=" Dispositivo de almacenamiento que utiliza memoria flash para almacenar datos, ofreciendo tiempos de acceso más rápidos que los discos duros tradicionales -- Samsung (Serie 970 EVO, 860 EVO)">DISCO SOLIDO</option>
+                        <option value="PROCESADOR" data-price="100" data-photo="procesador.jpeg" data-description="Componente central que ejecuta instrucciones y procesa datos en un ordenador. Se le conoce como el cerebro del sistema -- AMD (Ryzen 9, 7, 5)">PROCESADOR</option>
+                        <option value="MEMORIA RAM" data-price="200" data-photo="ram.jpeg" data-description="Tipo de memoria volátil que almacena temporalmente los datos y programas que el procesador está utilizando -- Corsair (Vengeance LPX)">MEMORIA RAM</option>
+                    </select>
+                    <div class="product-description" style="width: 800px;"></div> <!-- Description area -->
+                </td>
+                <td><img class="photo-preview" src="" alt="Photo"></td>
+                <td class="product-price">0.00</td>
+                <td class="product-subtotal">0.00</td>
+            </tr>
+            <tr>
+                <td><input type="number" class="product-qty" min="1" value="1" onchange="calculateSubtotal(this)"></td>
+                <td>
+                    <select onchange="updateProduct(this)">
+                        <option value="" data-price="0" data-photo="" data-description="">Select Product</option>
+                        <option value="MOUSE" data-price="100" data-photo="mouse.jpeg" data-description="Dispositivo de entrada que permite al usuario interactuar con la interfaz gráfica de un ordenador -- DELUX">MOUSE</option>
+                        <option value="TECLADO" data-price="100" data-photo="teclado.jpeg" data-description="Dispositivo de entrada compuesto por teclas que permite al usuario introducir texto -- Razer">TECLADO</option>
+                        <option value="FUENTE DE PODER" data-price="100" data-photo="fuente.jpeg" data-description="Componente que suministra energía eléctrica a todos los otros componentes del ordenador -- EVGA">FUENTE DE PODER</option>
+                        <option value="DISCO SOLIDO" data-price="100" data-photo="hhss.jpeg" data-description=" Dispositivo de almacenamiento que utiliza memoria flash para almacenar datos, ofreciendo tiempos de acceso más rápidos que los discos duros tradicionales -- Samsung (Serie 970 EVO, 860 EVO)">DISCO SOLIDO</option>
+                        <option value="PROCESADOR" data-price="100" data-photo="procesador.jpeg" data-description="Componente central que ejecuta instrucciones y procesa datos en un ordenador. Se le conoce como el cerebro del sistema -- AMD (Ryzen 9, 7, 5)">PROCESADOR</option>
+                        <option value="MEMORIA RAM" data-price="200" data-photo="ram.jpeg" data-description="Tipo de memoria volátil que almacena temporalmente los datos y programas que el procesador está utilizando -- Corsair (Vengeance LPX)">MEMORIA RAM</option>
+                    </select>
+                    <div class="product-description" style="width: 800px;"></div> <!-- Description area -->
+                </td>
+                <td><img class="photo-preview" src="" alt="Photo"></td>
+                <td class="product-price">0.00</td>
+                <td class="product-subtotal">0.00</td>
+            </tr>
+            <tr>
+                <td><input type="number" class="product-qty" min="1" value="1" onchange="calculateSubtotal(this)"></td>
+                <td>
+                    <select onchange="updateProduct(this)">
+                        <option value="" data-price="0" data-photo="" data-description="">Select Product</option>
+                        <option value="MOUSE" data-price="100" data-photo="mouse.jpeg" data-description="Dispositivo de entrada que permite al usuario interactuar con la interfaz gráfica de un ordenador -- DELUX">MOUSE</option>
+                        <option value="TECLADO" data-price="100" data-photo="teclado.jpeg" data-description="Dispositivo de entrada compuesto por teclas que permite al usuario introducir texto -- Razer">TECLADO</option>
+                        <option value="FUENTE DE PODER" data-price="100" data-photo="fuente.jpeg" data-description="Componente que suministra energía eléctrica a todos los otros componentes del ordenador -- EVGA">FUENTE DE PODER</option>
+                        <option value="DISCO SOLIDO" data-price="100" data-photo="hhss.jpeg" data-description=" Dispositivo de almacenamiento que utiliza memoria flash para almacenar datos, ofreciendo tiempos de acceso más rápidos que los discos duros tradicionales -- Samsung (Serie 970 EVO, 860 EVO)">DISCO SOLIDO</option>
+                        <option value="PROCESADOR" data-price="100" data-photo="procesador.jpeg" data-description="Componente central que ejecuta instrucciones y procesa datos en un ordenador. Se le conoce como el cerebro del sistema -- AMD (Ryzen 9, 7, 5)">PROCESADOR</option>
+                        <option value="MEMORIA RAM" data-price="200" data-photo="ram.jpeg" data-description="Tipo de memoria volátil que almacena temporalmente los datos y programas que el procesador está utilizando -- Corsair (Vengeance LPX)">MEMORIA RAM</option>
+                    </select>
+                    <div class="product-description" style="width: 800px;"></div> <!-- Description area -->
+                </td>
+                <td><img class="photo-preview" src="" alt="Photo"></td>
+                <td class="product-price">0.00</td>
+                <td class="product-subtotal">0.00</td>
+            </tr>
+            <tr>
+                <td><input type="number" class="product-qty" min="1" value="1" onchange="calculateSubtotal(this)"></td>
+                <td>
+                    <select onchange="updateProduct(this)">
+                        <option value="" data-price="0" data-photo="" data-description="">Select Product</option>
+                        <option value="MOUSE" data-price="100" data-photo="mouse.jpeg" data-description="Dispositivo de entrada que permite al usuario interactuar con la interfaz gráfica de un ordenador -- DELUX">MOUSE</option>
+                        <option value="TECLADO" data-price="100" data-photo="teclado.jpeg" data-description="Dispositivo de entrada compuesto por teclas que permite al usuario introducir texto -- Razer">TECLADO</option>
+                        <option value="FUENTE DE PODER" data-price="100" data-photo="fuente.jpeg" data-description="Componente que suministra energía eléctrica a todos los otros componentes del ordenador -- EVGA">FUENTE DE PODER</option>
+                        <option value="DISCO SOLIDO" data-price="100" data-photo="hhss.jpeg" data-description=" Dispositivo de almacenamiento que utiliza memoria flash para almacenar datos, ofreciendo tiempos de acceso más rápidos que los discos duros tradicionales -- Samsung (Serie 970 EVO, 860 EVO)">DISCO SOLIDO</option>
+                        <option value="PROCESADOR" data-price="100" data-photo="procesador.jpeg" data-description="Componente central que ejecuta instrucciones y procesa datos en un ordenador. Se le conoce como el cerebro del sistema -- AMD (Ryzen 9, 7, 5)">PROCESADOR</option>
+                        <option value="MEMORIA RAM" data-price="200" data-photo="ram.jpeg" data-description="Tipo de memoria volátil que almacena temporalmente los datos y programas que el procesador está utilizando -- Corsair (Vengeance LPX)">MEMORIA RAM</option>
+                    </select>
+                    <div class="product-description" style="width: 800px;"></div> <!-- Description area -->
+                </td>
+                <td><img class="photo-preview" src="" alt="Photo"></td>
+                <td class="product-price">0.00</td>
+                <td class="product-subtotal">0.00</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="footer">
+        <div>
+            <label>Subtotal: <span id="subtotal">0.00 BS.</span></label><br>
+            <label>IVA (13%): <span id="iva">0.00 BS.</span></label><br>
+            <label>Total: <span id="total">0.00 BS.</span></label>
+        </div>
+    </div>
+</div>
+<script src="funciones.js"></script>
+
+</body>
+</html>
